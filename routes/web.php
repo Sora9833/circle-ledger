@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\ExpenseController;
 
 
 Route::get('/', function () {
@@ -19,5 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('events', EventController::class);
 });
+
+Route::resource('incomes', IncomeController::class)->only(['create', 'store']);
+Route::resource('expenses', ExpenseController::class)->only(['create', 'store']);
 
 require __DIR__.'/auth.php';
