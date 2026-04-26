@@ -24,6 +24,13 @@
                     <input type="hidden" name="event_id" value="{{ $event->id }}">
 
                     <div>
+                        <label class="block text-sm text-gray-600">日付</label>
+                        <input type="date"
+                            name="date"
+                            value="{{ old('date') }}"
+                            class="mt-1 w-full border rounded px-3 py-2">
+                    </div>
+                    <div>
                         <label class="block text-sm text-gray-600">区分</label>
                         <input name="category" value="{{ old('category') }}"
                                class="mt-1 w-full border rounded px-3 py-2">

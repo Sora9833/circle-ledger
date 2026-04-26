@@ -18,6 +18,7 @@ class IncomeController extends Controller
     {
         $validated = $request->validate([
             'event_id' => ['required', 'exists:events,id'],
+            'date' => ['nullable', 'date'],
             'category' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:255'],
             'amount' => ['required', 'integer', 'min:0'],

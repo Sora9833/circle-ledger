@@ -1,3 +1,6 @@
+@php
+$incomeCategories = ['エントリー費','演奏会費','その他'];
+@endphp
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -23,10 +26,23 @@
                     @csrf
                     <input type="hidden" name="event_id" value="{{ $event->id }}">
 
-                    <div>
+                    <div class="mt-4">
+                        <div>
+                            <label class="block text-sm text-gray-600">日付</label>
+                            <input type="date"
+                                name="date"
+                                value="{{ old('date') }}"
+                                class="mt-1 w-full border rounded px-3 py-2">
+                        </div>
                         <label class="block text-sm text-gray-600">区分</label>
-                        <input name="category" value="{{ old('category') }}"
-                               class="mt-1 w-full border rounded px-3 py-2">
+                        <select name="category" class="mt-1 w-full border rounded px-3 py-2" required>
+                            <option value="">選択してください</option>
+                            @foreach($incomeCategories as $c)
+                                <option value="{{ $c }}" @selected(old('category')===$c)>
+                                    {{ $c }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div>

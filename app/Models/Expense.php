@@ -10,6 +10,10 @@ class Expense extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'event_id', 'category', 'description', 'amount',
+        'event_id',
+        'date',
+        'category',
+        'description',
+        'amount',
     ];
-}
+    }

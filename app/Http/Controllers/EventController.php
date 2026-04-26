@@ -51,7 +51,26 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return view('events.show', compact('event'));
+        $incomes = $event->incomes()
+            ->orderBy('date', 'desc')
+            ->get();
+
+        $expenses = $event->expenses()
+            ->orderBy('date', 'desc')
+            ->get();
+
+        $totalIncome = $incomes->sum('amount');
+        $totalExpense = $expenses->sum('amount');
+        $balance = $totalIncome - $totalExpense;
+
+        return view('events.show', compact(
+            'event',
+            'incomes',
+            'expenses',
+            'totalIncome',
+            'totalExpense',
+            'balance'
+        ));
     }
 
     /**
